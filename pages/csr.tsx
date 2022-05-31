@@ -6,7 +6,7 @@ import {UsersList} from "../components/UsersList";
 import {Users} from "../types/user";
 
 const CSR = () => {
-    const {data, error, isValidating} = useSWR<Users>(FETCH_USERS_WITH_DELAY_API_PATH, fetchUsersWithDelay);
+    const {data, isValidating} = useSWR<Users>(FETCH_USERS_WITH_DELAY_API_PATH, fetchUsersWithDelay);
     const hasData = typeof data !== 'undefined';
 
     return (

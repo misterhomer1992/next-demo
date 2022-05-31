@@ -5,7 +5,7 @@ import {Users} from "../types/user";
 import {UsersList} from "../components/UsersList";
 import Head from "next/head";
 
-export const getServerSideProps: GetServerSideProps = async (context) => {
+export const getServerSideProps: GetServerSideProps = async () => {
     const users = await fetchUsers();
 
     return {
