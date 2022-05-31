@@ -1,7 +1,7 @@
 import {FETCH_USERS_WITH_DELAY_API_PATH} from "../const";
 import useSWR from "swr";
 import Head from "next/head";
-import {fetchUsersWithDelay} from "../api/users";
+import {fetchUsersWithDelay} from "../appAPI/users";
 import {UsersList} from "../components/UsersList";
 import {Users} from "../types/user";
 

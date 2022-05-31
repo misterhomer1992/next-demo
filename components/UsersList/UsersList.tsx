@@ -30,9 +30,8 @@ export const UsersList: FC<UsersList> = (
             <tbody>
             {
                 users.map((user) => {
-                    // const normalizedBirthDate = new Date(user.birthDate).toLocaleString();
-                    const birthDate = new Date(user.birthDate);
-                    const normalizedBirthDate = `${birthDate.getDate()}-${birthDate.getMonth() + 1}-${birthDate.getFullYear()}`;
+                    // const birthDate = new Date(user.birthDate);
+                    // const normalizedBirthDate = `${birthDate.getDate()}-${birthDate.getMonth() + 1}-${birthDate.getFullYear()}`;
 
                     return (
                         <tr key={user.id}>
@@ -40,7 +39,7 @@ export const UsersList: FC<UsersList> = (
                             <td>{user.firstName}</td>
                             <td>{user.lastName}</td>
                             <td>{user.email}</td>
-                            <td>{normalizedBirthDate}</td>
+                            <td>{234}</td>
                             {hasDetailPage && (
                                 <td>
                                     <Link href={`/users/${user.id}`}>

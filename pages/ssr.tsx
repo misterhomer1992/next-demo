@@ -1,12 +1,12 @@
 import {GetServerSideProps} from "next";
 import {FC} from "react";
-import {fetchUsers} from "../api/users";
 import {Users} from "../types/user";
 import {UsersList} from "../components/UsersList";
 import Head from "next/head";
+import {users1} from "../mockData/users";
 
 export const getServerSideProps: GetServerSideProps = async () => {
-    const users = await fetchUsers();
+    const users = users1;
 
     return {
         props: {

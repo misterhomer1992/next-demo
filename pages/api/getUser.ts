@@ -7,7 +7,7 @@ export default function handler(
     req: NextApiRequest,
     res: NextApiResponse<User | undefined>
 ) {
-    const user = users1.find(i => i.id === req.query.id);
+    const user = users1.find(i => String(i.id) === String(req.query.id));
 
     res.status(200).json(user);
 }
