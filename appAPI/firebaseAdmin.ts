@@ -1,8 +1,8 @@
 import {User, Users} from "../types/user";
-import {firebaseAdmin} from "../firebase/adminDB";
+import {adminDatabase} from "../firebase/adminDB";
 
 export async function fetchUsers(): Promise<Users> {
-    const data = await firebaseAdmin
+    const data = await adminDatabase
         .database()
         .ref('users')
         .get();
