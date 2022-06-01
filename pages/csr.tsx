@@ -1,12 +1,12 @@
 import {FETCH_USERS_WITH_DELAY_API_PATH} from "../const";
 import useSWR from "swr";
 import Head from "next/head";
-import {fetchUsersWithDelay} from "../appAPI/users";
 import {UsersList} from "../components/UsersList";
 import {Users} from "../types/user";
+import {fetchUsers} from "../appAPI/firebase";
 
 const CSR = () => {
-    const {data, isValidating} = useSWR<Users>(FETCH_USERS_WITH_DELAY_API_PATH, fetchUsersWithDelay);
+    const {data, isValidating} = useSWR<Users>(FETCH_USERS_WITH_DELAY_API_PATH, fetchUsers);
     const hasData = typeof data !== 'undefined';
 
     return (

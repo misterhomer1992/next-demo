@@ -1,11 +1,18 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type {NextApiRequest, NextApiResponse} from 'next'
 import {Users} from "../../types/user";
-import {users1} from '../../mockData/users';
+import {firebaseAdmin} from "../../firebase/adminDB";
 
-export default function handler(
+export default async function handler(
     req: NextApiRequest,
-    res: NextApiResponse<Users>
+    res: NextApiResponse<Users | null>
 ) {
-    res.status(200).json(users1);
+    const data = await firebaseAdmin
+        .database()
+        .ref('users')
+        .get();
+
+    const value = data.val() as Users | null;
+
+    res.status(200).json(value);
 }

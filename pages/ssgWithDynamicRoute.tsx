@@ -1,12 +1,12 @@
-import {GetStaticPaths, GetStaticProps} from "next";
+import {GetStaticProps} from "next";
 import {FC} from "react";
 import {Users} from "../types/user";
 import {UsersList} from "../components/UsersList";
 import Head from "next/head";
-import {users1} from "../mockData/users";
+import {fetchUsers} from "../appAPI/firebaseAdmin";
 
 export const getStaticProps: GetStaticProps = async () => {
-    const users = users1;
+    const users = await fetchUsers();
 
     return {
         props: {

@@ -3,10 +3,10 @@ import {FC} from "react";
 import {Users} from "../types/user";
 import {UsersList} from "../components/UsersList";
 import Head from "next/head";
-import {users1} from "../mockData/users";
+import {fetchUsers} from "../appAPI/firebaseAdmin";
 
 export const getServerSideProps: GetServerSideProps = async () => {
-    const users = users1;
+    const users = await fetchUsers();
 
     return {
         props: {

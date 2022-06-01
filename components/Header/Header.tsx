@@ -1,15 +1,12 @@
 import Link from 'next/link';
 import {useRouter} from "next/router";
 import classNames from 'classnames';
-import {CSR_PATH, SSG_DYNAMIC_ROUTE_PATH, SSG_PATH, SSR_PATH} from "../../const";
+import {CSR_PATH, SSG_DYNAMIC_ROUTE_PATH, SSR_PATH} from "../../const";
 
 export const Header = () => {
     const router = useRouter();
     const ssrLinkClasses = classNames('nav-link', {
         'active': router.pathname === SSR_PATH,
-    });
-    const ssgLinkClasses = classNames('nav-link', {
-        'active': router.pathname === SSG_PATH,
     });
     const ssgDynamicRouteLinkClasses = classNames('nav-link', {
         'active': router.pathname === SSG_DYNAMIC_ROUTE_PATH || router.pathname.indexOf('user') !== -1,
@@ -34,11 +31,6 @@ export const Header = () => {
                         <li className="nav-item">
                             <Link href={SSR_PATH}>
                                 <a className={ssrLinkClasses} aria-current="page">SSR</a>
-                            </Link>
-                        </li>
-                        <li className="nav-item">
-                            <Link href={SSG_PATH}>
-                                <a className={ssgLinkClasses}>SSG</a>
                             </Link>
                         </li>
                         <li className="nav-item">
