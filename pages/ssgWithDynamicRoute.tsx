@@ -3,10 +3,16 @@ import {FC} from "react";
 import {Users} from "../types/user";
 import {UsersList} from "../components/UsersList";
 import Head from "next/head";
-import {fetchUsers} from "../appAPI/firebaseAdmin";
+import {fetchDraftUsers, fetchUsers} from "../appAPI/firebaseAdmin";
 
-export const getStaticProps: GetStaticProps = async () => {
-    const users = await fetchUsers();
+export const getStaticProps: GetStaticProps = async (context) => {
+    let users: Users = [];
+
+    if (context.preview) {
+        users = await fetchDraftUsers();
+    } else {
+        users = await fetchUsers();
+    }
 
     return {
         props: {
@@ -15,7 +21,7 @@ export const getStaticProps: GetStaticProps = async () => {
     }
 }
 
-const SSR: FC<{ users: Users }> = ({users}) => {
+const SSGWithDynamicRoute: FC<{ users: Users }> = ({users}) => {
 
     return (
         <section>
@@ -23,9 +29,9 @@ const SSR: FC<{ users: Users }> = ({users}) => {
                 <title>SSG + dynamic route</title>
             </Head>
             <h1>SSG + dynamic route content</h1>
-            <UsersList users={users} hasDetailPage />
+            <UsersList users={users} hasDetailPage/>
         </section>
     );
 }
 
-export default SSR
+export default SSGWithDynamicRoute
