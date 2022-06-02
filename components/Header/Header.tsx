@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import {useRouter} from "next/router";
 import classNames from 'classnames';
-import {CSR_PATH, SSG_DYNAMIC_ROUTE_PATH, SSR_PATH} from "../../const";
+import {CSR_PATH, SSG_DYNAMIC_ROUTE_PATH, SSG_REVALIDATE_ROUTE_PATH, SSR_PATH} from "../../const";
 
 export const Header = () => {
     const router = useRouter();
@@ -10,6 +10,9 @@ export const Header = () => {
     });
     const ssgDynamicRouteLinkClasses = classNames('nav-link', {
         'active': router.pathname === SSG_DYNAMIC_ROUTE_PATH || router.pathname.indexOf('user') !== -1,
+    });
+    const ssgRevalidateClasses = classNames('nav-link', {
+        'active': router.pathname === SSG_REVALIDATE_ROUTE_PATH,
     });
     const csrLinkClasses = classNames('nav-link', {
         'active': router.pathname === CSR_PATH,
@@ -36,6 +39,11 @@ export const Header = () => {
                         <li className="nav-item">
                             <Link href={SSG_DYNAMIC_ROUTE_PATH}>
                                 <a className={ssgDynamicRouteLinkClasses}>SSG + dynamic route</a>
+                            </Link>
+                        </li>
+                        <li className="nav-item">
+                            <Link href={SSG_REVALIDATE_ROUTE_PATH}>
+                                <a className={ssgRevalidateClasses}>SSG(revalidate)</a>
                             </Link>
                         </li>
                         <li className="nav-item">
