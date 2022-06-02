@@ -3,16 +3,10 @@ import {FC} from "react";
 import {Users} from "../types/user";
 import {UsersList} from "../components/UsersList";
 import Head from "next/head";
-import {fetchDraftUsers, fetchUsers} from "../appAPI/firebaseAdmin";
+import {fetchUsers} from "../appAPI/firebaseAdmin";
 
-export const getStaticProps: GetStaticProps = async (context) => {
-    let users: Users = [];
-
-    if (context.preview) {
-        users = await fetchDraftUsers();
-    } else {
-        users = await fetchUsers();
-    }
+export const getStaticProps: GetStaticProps = async () => {
+    const users = await fetchUsers();
 
     return {
         props: {

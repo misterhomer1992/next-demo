@@ -2,7 +2,6 @@ import {NextApiRequest, NextApiResponse} from "next";
 import {fetchUser} from "../../appAPI/firebaseAdmin";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-    console.log(req.query.secret)
     if (req.query.secret !== 'MY_SECRET_TOKEN' || !req.query.id) {
         return res.status(401).json({message: 'Invalid token'})
     }

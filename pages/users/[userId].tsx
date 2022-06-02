@@ -1,21 +1,15 @@
 import {FC} from "react";
-import {User, Users} from "../../types/user";
+import {User} from "../../types/user";
 import Head from "next/head";
 import {GetStaticPaths, GetStaticProps} from "next";
 import {users1} from "../../mockData/users";
 import {UserDetail} from "../../components/UserDetail";
-import {fetchDraftUser, fetchUser} from "../../appAPI/firebaseAdmin";
+import {fetchUser} from "../../appAPI/firebaseAdmin";
 
 export const getStaticProps: GetStaticProps = async (context) => {
     // @ts-ignore
     const userId = context.params.userId as string;
-    let user: User | undefined;
-
-    if (context.preview) {
-        user = await fetchDraftUser(userId);
-    } else {
-        user = await fetchUser(userId);
-    }
+    const user = await fetchUser(userId);
 
     return {
         props: {
